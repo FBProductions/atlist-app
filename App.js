@@ -4,6 +4,7 @@ import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Video } from 'expo';
 import loginVideo from './assets/fullsize_main.mp4';
+import { createStackNavigator } from 'react-navigation';
 
 
 export default class Login extends Component {
@@ -53,10 +54,15 @@ export default class Login extends Component {
 					placeholderTextColor='black'
 					leftIcon={{ type: 'font-awesome', name: 'envelope' }}
 					onChangeText={(email) => this.setState({email: email})}
+					returnKeyType='next'
+					onSubmitEditing={() => { this.secondTextInput.focus(); }}
+					blurOnSubmit={false}
 				/>
 				<Input
 					placeholder='Password'
 					placeholderTextColor='black'
+					secureTextEntry={true}
+					ref={(input) => { this.secondTextInput = input; }}
 					leftIcon={<Icon name='lock'
 								size={34}/>}
 				/>
