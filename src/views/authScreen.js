@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Animated } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Video } from 'expo';
 import loginVideo from '../assets/fullsize_main.mp4';
-import { createStackNavigator } from 'react-navigation';
 
 
-export class AuthScreen extends Component {
+export class AuthScreen extends React.Component {
+
+	static navigationOptions = { header: null }
 
 	constructor(props) {
 		super(props);
 		this.state = { 
-			backgroundOpacity: new Animated.Value(0),
-			email: null,
-			password: null,
-			emailErr: false,
-			pwErr: false };
+			backgroundOpacity: new Animated.Value(0)
+		};
 	}
 
 	fadeInVideo = () => {
@@ -35,7 +33,7 @@ export class AuthScreen extends Component {
 		<View style={styles.container}>
 
 			<View style={styles.background}>
-				<Animated.View style={[styles.backgroundViewWrapper, {opacity: this.state.backgroundOpacity}]}>
+		  	<Animated.View style={[styles.backgroundViewWrapper, {opacity: this.state.backgroundOpacity}]}>
 					<Video
 						source={loginVideo}
 						shouldPlay
@@ -47,29 +45,21 @@ export class AuthScreen extends Component {
 				</Animated.View>
 			</View>
 
-			<View style={styles.overlay}> 
-				<View style={styles.login}> 
-				<Input
-					placeholder='Email'
-					placeholderTextColor='black'
-					leftIcon={{ type: 'font-awesome', name: 'envelope' }}
-					onChangeText={(email) => this.setState({email: email})}
-					returnKeyType='next'
-					onSubmitEditing={() => { this.secondTextInput.focus(); }}
-					blurOnSubmit={false}
-				/>
-				<Input
-					placeholder='Password'
-					placeholderTextColor='black'
-					secureTextEntry={true}
-					ref={(input) => { this.secondTextInput = input; }}
-					leftIcon={<Icon name='lock'
-								size={34}/>}
-				/>
-				<Button title='Log in'
-					buttonStyle={{ width: 250, height: 50, backgroundColor: '#88c585' }}
-					containerStyle={{ margin: 20 }}
-				/> 
+			<View style={styles.overlay}>
+
+				<View style={styles.login}>
+
+					<Button title='Log in'
+						buttonStyle={{ width: 250, height: 50, backgroundColor: '#88c585' }}
+						containerStyle={{ margin: 20 }}
+						onPress={() => this.props.navigation.navigate('Login')}
+					/> 
+
+					<Button title='Register'
+						buttonStyle={{ width: 250, height: 50, backgroundColor: '#f44259' }}
+						containerStyle={{ margin: 20 }}
+						onPress={() => this.props.navigation.navigate('Register')}
+					/> 
 				</View> 
 			</View>
 
