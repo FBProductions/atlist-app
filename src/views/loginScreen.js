@@ -25,6 +25,7 @@ export class LoginScreen extends React.Component {
 		<View style={styles.container}>
 
 			<View style={styles.login}> 
+				<Text style={styles.title}>Login</Text>
 				<Input
 					placeholder='Email'
 					placeholderTextColor='black'
@@ -46,7 +47,6 @@ export class LoginScreen extends React.Component {
 				<Button title='Log in'
 					buttonStyle={{ width: 250, height: 50, backgroundColor: '#88c585' }}
 					containerStyle={{ margin: 20 }}
-					ref={(input) => { this.submitBtn = input; }}
 					onPress={() => { this.submitLogin() }}
 				/> 
 			</View>
@@ -60,14 +60,18 @@ export class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1, 
-		backgroundColor: '#88c585', 
-		alignItems: 'center', 
+		backgroundColor: '#77e072', 
+		alignItems: 'center',
 		justifyContent: 'center' 
+	},
+	title: {
+		fontSize: 30,
+		paddingBottom: 30
 	},
 	login: {
 		backgroundColor: 'blue',
 		width: 350,
-		height: 200,//TODO
+		height: 300,//TODO
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: 'rgba(213, 217, 224, 0.8)',
